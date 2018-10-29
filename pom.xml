@@ -1,0 +1,154 @@
+<!--
+  ~ 	Copyright Christophe Jeunesse
+  ~
+  ~ 	Licensed under the Apache License, Version 2.0 (the "License");
+  ~ 	you may not use this file except in compliance with the License.
+  ~ 	You may obtain a copy of the License at
+  ~
+  ~ 	http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ 	Unless required by applicable law or agreed to in writing, software
+  ~ 	distributed under the License is distributed on an "AS IS" BASIS,
+  ~ 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ 	See the License for the specific language governing permissions and
+  ~ 	limitations under the License.
+  ~
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.dreameddeath</groupId>
+    <artifactId>distributed-testing</artifactId>
+    <version>0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>${project.artifactId}</name>
+    <url>https://github.com/dreameddeath/distributed-testing</url>
+
+    <modules>
+        <module>bom-maven</module>
+    </modules>
+
+    <profiles>
+        <profile>
+            <id>build-component</id>
+            <modules>
+                <module>build</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>build-common</id>
+            <modules>
+                <module>common</module>
+            </modules>
+        </profile>
+    </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <updateDependencies>false</updateDependencies>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <release>${java.version}</release>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.0</version>
+            </plugin>
+
+        </plugins>
+    </build>
+    <properties>
+        <java.version>11</java.version>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <integrationSourceDirectory>${project.basedir}/src/integration-test</integrationSourceDirectory>
+        <integrationOutputDirectory>${project.build.directory}/integration-test-classes</integrationOutputDirectory>
+        <integrationGeneratedOutputDirectory>${project.build.directory}/generated-integration-test-sources
+        </integrationGeneratedOutputDirectory>
+
+        <!-- General dependencies -->
+        <slf4j.version>1.8.0-beta2</slf4j.version>
+
+        <!-- testing only -->
+        <junit.bom.version>5.3.1</junit.bom.version>
+        <assertj.version>3.11.1</assertj.version>
+        <mockito.version>2.23.0</mockito.version>
+    </properties>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <!--
+                TESTING
+            -->
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${junit.bom.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${mockito.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${assertj.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!--
+            LOGGING
+        -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+    </dependencies>
+</project>
