@@ -69,6 +69,36 @@
                 <version>2.22.0</version>
             </plugin>
 
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${mvn.jacoco.plugin}</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.eluder.coveralls</groupId>
+                <artifactId>coveralls-maven-plugin</artifactId>
+                <version>${coveralls.mvn.plugin.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.fasterxml.jackson.core</groupId>
+                        <artifactId>jackson-core</artifactId>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.fasterxml.jackson.core</groupId>
+                        <artifactId>jackson-annotations</artifactId>
+                    </dependency>
+                </dependencies>
+            </plugin>
         </plugins>
     </build>
     <properties>
@@ -87,6 +117,12 @@
         <junit.bom.version>5.3.1</junit.bom.version>
         <assertj.version>3.11.1</assertj.version>
         <mockito.version>2.23.0</mockito.version>
+
+
+        <!-- Build Management -->
+        <mvn.jacoco.plugin>0.7.8</mvn.jacoco.plugin>
+        <coveralls.mvn.plugin.version>4.3.0</coveralls.mvn.plugin.version>
+
     </properties>
 
 
@@ -118,6 +154,16 @@
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>2.9.7</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>2.9.7</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
