@@ -23,9 +23,5 @@ addons:
     build_command_prepend: "export TEST_LOG_LEVEL=ERROR"
     build_command:   "mvn -Pbuild-common,build-component -q -B -Dsurefire.printSummary=false clean test"
     branch_pattern: coverity_scan
-  apt:
-    packages:
-    - oracle-java11-installer
-
 
 script: mvn -Pbuild-common,build-component -B clean test jacoco:report coveralls:report
