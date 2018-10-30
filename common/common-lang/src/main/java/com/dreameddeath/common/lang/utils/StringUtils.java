@@ -34,10 +34,16 @@ public class StringUtils {
 
 
     public static String capitalizeFirst(String variableName) {
+        if (variableName == null) {
+            return null;
+        }
         return variableName.substring(0, 1).toUpperCase() + variableName.substring(1);
     }
 
     public static String lowerCaseFirst(String variableName) {
+        if (variableName == null) {
+            return null;
+        }
         return variableName.substring(0, 1).toLowerCase() + variableName.substring(1);
     }
 }
