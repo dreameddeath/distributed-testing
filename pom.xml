@@ -92,10 +92,17 @@
                     <dependency>
                         <groupId>com.fasterxml.jackson.core</groupId>
                         <artifactId>jackson-core</artifactId>
+                        <version>${jackson.version}</version>
                     </dependency>
                     <dependency>
                         <groupId>com.fasterxml.jackson.core</groupId>
                         <artifactId>jackson-annotations</artifactId>
+                        <version>${jackson.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.fasterxml.jackson.core</groupId>
+                        <artifactId>jackson-databind</artifactId>
+                        <version>${jackson.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -118,9 +125,11 @@
         <assertj.version>3.11.1</assertj.version>
         <mockito.version>2.23.0</mockito.version>
 
+        <!-- misc -->
+        <jackson.version>2.9.7</jackson.version>
 
         <!-- Build Management -->
-        <mvn.jacoco.plugin>0.7.8</mvn.jacoco.plugin>
+        <mvn.jacoco.plugin>0.8.2</mvn.jacoco.plugin>
         <coveralls.mvn.plugin.version>4.3.0</coveralls.mvn.plugin.version>
 
     </properties>
@@ -158,12 +167,17 @@
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-core</artifactId>
-                <version>2.9.7</version>
+                <version>${jackson.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-annotations</artifactId>
-                <version>2.9.7</version>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
