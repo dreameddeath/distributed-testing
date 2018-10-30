@@ -29,4 +29,7 @@
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
 
+    <modules>
+        <module>build-testing-annotation-processor</module>
+    </modules>
 </project>

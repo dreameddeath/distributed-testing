@@ -20,30 +20,35 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.dreameddeath</groupId>
-        <artifactId>distributed-testing</artifactId>
+        <artifactId>build</artifactId>
         <version>0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>bom-maven</artifactId>
+    <artifactId>build-bom</artifactId>
     <version>0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
+
 
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>com.dreameddeath</groupId>
-                <artifactId>build-bom</artifactId>
+                <artifactId>build-testing</artifactId>
                 <version>0.1-SNAPSHOT</version>
-                <scope>import</scope>
-                <type>pom</type>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>com.dreameddeath</groupId>
-                <artifactId>common-bom</artifactId>
-                <scope>import</scope>
+                <artifactId>build-testing-annotation-processor</artifactId>
                 <version>0.1-SNAPSHOT</version>
-                <type>pom</type>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.dreameddeath</groupId>
+                <artifactId>build-utils</artifactId>
+                <version>0.1-SNAPSHOT</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

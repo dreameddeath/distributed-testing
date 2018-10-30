@@ -20,11 +20,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.dreameddeath</groupId>
-        <artifactId>distributed-testing</artifactId>
+        <artifactId>common</artifactId>
         <version>0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>bom-maven</artifactId>
+    <artifactId>common-bom</artifactId>
     <version>0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
@@ -33,17 +33,13 @@
         <dependencies>
             <dependency>
                 <groupId>com.dreameddeath</groupId>
-                <artifactId>build-bom</artifactId>
+                <artifactId>common-lang</artifactId>
                 <version>0.1-SNAPSHOT</version>
-                <scope>import</scope>
-                <type>pom</type>
             </dependency>
             <dependency>
                 <groupId>com.dreameddeath</groupId>
-                <artifactId>common-bom</artifactId>
-                <scope>import</scope>
+                <artifactId>common-testing</artifactId>
                 <version>0.1-SNAPSHOT</version>
-                <type>pom</type>
             </dependency>
         </dependencies>
     </dependencyManagement>
