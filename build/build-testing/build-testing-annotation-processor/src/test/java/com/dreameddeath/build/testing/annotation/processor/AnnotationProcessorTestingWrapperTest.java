@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.lang.reflect.Constructor;
 import java.util.Collections;
+import java.util.Map;
 import java.util.Set;
 
 public class AnnotationProcessorTestingWrapperTest {
@@ -113,5 +114,30 @@ public class AnnotationProcessorTestingWrapperTest {
         AnnotationProcessorTestingWrapper.Result testing = wrapper.run("classpath:/testing");
         Assertions.assertThat(testing.getResult()).isFalse();
         Assertions.assertThat(testing.getDiagnostics().getDiagnostics()).hasSize(1);
+        Assertions.assertThat(testing.hasFile("toto")).isFalse();
+        Assertions.assertThat(testing.hasClass("toto")).isFalse();
+    }
+
+
+    @Test
+    void testWithFileFromString() throws Throwable {
+        TestAnnotationProcessor testAnnotationProcessor = new TestAnnotationProcessor();
+        AnnotationProcessorTestingWrapper wrapper = new AnnotationProcessorTestingWrapper()
+                .withTempDirectoryPrefix("TestDirectory")
+                .withAnnotationProcessor(testAnnotationProcessor);
+
+        String name = "test.in.TestingInVirtual";
+        String content = "package test.in;\n" +
+                "import com.dreameddeath.build.testing.annotation.processor.AnnotationProcessorTestingWrapperTest.TestingAnnot;\n" +
+                "@TestingAnnot(\"virtual\")\n" +
+                "public class TestingInVirtual{\n" +
+                "}\n";
+
+
+        AnnotationProcessorTestingWrapper.Result testing = wrapper.run(Map.of(name, content));
+        Assertions.assertThat(testing.getResult()).isTrue();
+        Assertions.assertThat(testing.getDiagnostics().getDiagnostics()).hasSize(0);
+        Assertions.assertThat(testing.getSourceFiles()).hasSize(1);
+        Assertions.assertThat(testing.hasClass("test.out.TestingInVirtual")).isTrue();
     }
 }
