@@ -143,7 +143,7 @@ public class ClassUtils {
         return aPackage;
     }
 
-    private static List<String> getPotentialParentPackageNameList(String name) {
+    public static List<String> getPotentialParentPackageNameList(String name) {
         var parts = name.split("\\.");
         var potentialParents = new ArrayList<String>(parts.length);
         if (parts.length > 1) {

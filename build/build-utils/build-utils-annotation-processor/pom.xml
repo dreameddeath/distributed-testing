@@ -20,16 +20,29 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.dreameddeath</groupId>
-        <artifactId>build</artifactId>
+        <artifactId>build-utils</artifactId>
         <version>0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>build-utils</artifactId>
+    <artifactId>build-utils-annotation-processor</artifactId>
     <version>0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
     <name>${project.artifactId}</name>
 
-    <modules>
-        <module>build-utils-annotation-processor</module>
-    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>com.dreameddeath</groupId>
+            <artifactId>build-testing-annotation-processor</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.dreameddeath</groupId>
+            <artifactId>common-lang</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup</groupId>
+            <artifactId>javapoet</artifactId>
+        </dependency>
+    </dependencies>
 </project>
