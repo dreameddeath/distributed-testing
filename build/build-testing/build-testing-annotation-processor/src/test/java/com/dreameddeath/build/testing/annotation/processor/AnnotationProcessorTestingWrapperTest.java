@@ -134,7 +134,9 @@ public class AnnotationProcessorTestingWrapperTest {
                 "}\n";
 
         AnnotationProcessorTestingWrapper.Result testing = wrapper.run(Map.of(name, content));
+        ClassLoader oldClassLoader = Thread.currentThread().getContextClassLoader();
         testing.updateSystemClassLoader();
+        Assertions.assertThat(Thread.currentThread().getContextClassLoader()).isNotEqualTo(oldClassLoader);
         Assertions.assertThat(testing.getResult()).isTrue();
         Assertions.assertThat(testing.getDiagnostics().getDiagnostics()).hasSize(0);
         Assertions.assertThat(testing.getSourceFiles()).hasSize(1);
@@ -142,5 +144,6 @@ public class AnnotationProcessorTestingWrapperTest {
         Class<?> aClass = Thread.currentThread().getContextClassLoader().loadClass("test.out.TestingInVirtual");
         Assertions.assertThat(aClass).isNotNull();
         testing.cleanUp();
+        Assertions.assertThat(Thread.currentThread().getContextClassLoader()).isEqualTo(oldClassLoader);
     }
 }
